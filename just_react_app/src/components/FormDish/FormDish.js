@@ -1,4 +1,5 @@
 import React from "react";
+import './FormDish.css';
 
 const FormDish=({title,price, image, changeDataHanlder,saveHandler, cancelHandler})=>{
     const stanImage = 'https://i.chzbgr.com/full/6029628416/h12E0285A/yep'
@@ -34,8 +35,10 @@ const FormDish=({title,price, image, changeDataHanlder,saveHandler, cancelHandle
          <button type='submit'>SAVE</button>
          </div>
          <div className='formCancel'>
-         <button type='submit' onClick={backToContactsHandler}>BACK TO CONTACTS</button>
+         <button type='submit' onClick={cancelHandler}>Cancel</button>
         </div>
         </form>
     )
 }
+
+export default FormDish;

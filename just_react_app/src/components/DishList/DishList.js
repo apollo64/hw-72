@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Dish from './Dish/Dish';
 import './DishList.css';
 
@@ -12,14 +13,16 @@ const DishList=()=>{
         {title:'peperony', price:100, id:3, image:stanImage },
         {title:'peperony', price:100, id:4, image:stanImage },
     ])
-
+    const navigate = useNavigate();
     const editHandler = (id)=>{
         console.log('dish id edit', id)
+        navigate('edit_dish/'+id)
     }
     const deleteHandler = (id)=>{
         console.log('dish id delete', id)
     }
     const addNewDishHandler =()=>{
+        navigate('add_dish')
         console.log('dish add new')
     }
     return (
