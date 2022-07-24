@@ -1,30 +1,32 @@
-import React,{useState, useEffect} from 'react';
+import React,{ useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dish from './Dish/Dish';
+import {useSelector , useDispatch, shallowEqual} from 'react-redux';
+import {deleteDish, fetchDishes} from '../../store/services/DishesSlice';
 import './DishList.css';
 
 
 
 const DishList=()=>{
-    const stanImage = 'https://baking-academy.ru/upload/ammina.optimizer/jpg-webp/q80/upload/resize_cache/iblock/3fb/540_800_1/3fbc6a2a286120a62282e179dc29f3ed.webp'
-    const [dishes , setDishes] = useState([
-        {title:'peperony', price:100, id:0, image:stanImage },
-        {title:'peperony', price:100, id:2, image:stanImage },
-        {title:'peperony', price:100, id:3, image:stanImage },
-        {title:'peperony', price:100, id:4, image:stanImage },
-    ])
+    const {dishes  } = useSelector(state=>state.dishes, shallowEqual)
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const editHandler = (id)=>{
         console.log('dish id edit', id)
         navigate('edit_dish/'+id)
     }
     const deleteHandler = (id)=>{
-        console.log('dish id delete', id)
+        dispatch(deleteDish(id))
     }
     const addNewDishHandler =()=>{
         navigate('add_dish')
-        console.log('dish add new')
     }
+
+    useEffect(()=>{
+        dispatch(fetchDishes())
+    },[dispatch])
     return (
         <>
         <div className="dishListHeader">

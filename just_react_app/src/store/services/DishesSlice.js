@@ -1,9 +1,9 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { axiosFireBase } from '../../../axiosFireBase';
+import { axiosFireBase } from '../../axiosFireBase';
 
 
 
-initialState = {
+const initialState = {
     formDish: {
         title:'',
         price:'',
@@ -13,47 +13,48 @@ initialState = {
     error:null,
     loading:false
 }
-const fetchDishes =createAsyncThunk({
+export const fetchDishes =createAsyncThunk(
     'dishes/fetchDishes',
     async ()=>{
         const res = await axiosFireBase.get('dishes.json')
-        const dishes= res.data.map(dishId=>{...res.data[dishId], id:dishId})
         return res.data
     }
-})
+)
 
-const addDish =createAsyncThunk({
+export const addDish =createAsyncThunk(
     'dishes/addDish',
     async(newDish)=>{
         const res = await axiosFireBase.post('dishes.json', newDish) 
         return {...newDish, id:res.data.name}
     }
-})
-const deleteDish =createAsyncThunk({
+)
+export const deleteDish =createAsyncThunk(
     'dishes/deleteDish',
     async(dishId)=>{
-        const res = await axiosFireBase.delete('dishes/'+dishId+.'json')
+        await axiosFireBase.delete('dishes/'+dishId+'.json')
         return dishId
     }
-})
+)
 
 const reducerDishes = createSlice({
     name:'dishes',
     initialState,
-    exraReducers:
-    [fetchDishes.fulfilled]:(state, payload) =>{
-        console.log('action payload fetchDishes', action.payload)
-        state=action.payload
+    extraReducers:{
+    [fetchDishes.fulfilled]:(state, action) =>{
+
+        state.dishes=Object.keys(action.payload).map(dishId =>( {...action.payload[dishId], id :dishId}))
     },
     [addDish.fulfilled]:(state,action)=>{
-        console.log('add dish action payload', action.payload)
-        state.push(action.payload)
+        state.dishes.push(action.payload)
     },
-    [deleteDish/fulfilled]:(state, payload)=>{
+    [deleteDish.fulfilled]:(state, action)=>{
         console.log('delete dish action payload', action.payload)
-        let copy = state.filter(dish=>dish.id !== action.payload)
-        state=copy
-    },
-
+        let copyDishes = state.dishes.filter(dish=>dish.id !== action.payload)
+        state.dishes=copyDishes
+    }
+    }
 
 })
+
+
+export default reducerDishes.reducer

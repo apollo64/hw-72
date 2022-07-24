@@ -7,13 +7,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const Dish =({dish, editHandler, deleteHandler}) =>{
-    const {name, image, title,price} = dish;
+    const {image, title,price} = dish;
 
   return (
     <Card sx={{ width:'90%',justifyContent: 'space-between', display:'flex', flexDirection:'row', margin:'15px auto'}}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt="Food image"
         height="140"
         sx={{width:'120px', margin:'10'}}
         image={image}
