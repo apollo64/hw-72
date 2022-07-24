@@ -15,7 +15,16 @@
 
 .head nav {
     height: 100%;
+    align-items: center;
+    display:flex;
+    flex-direction: row;
 }
 .logoName{
-    width:10%;
+    width:36%;
+}
+.navButton{
+    background-color:transparent;
+    display: block;
+    width:fit-content;
+    margin-right: 10px;
 }

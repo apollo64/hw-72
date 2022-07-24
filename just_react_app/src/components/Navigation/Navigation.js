@@ -7,10 +7,11 @@ const Navigation =()=>{
 
         <header className='head'>
         <div className='logoName'>
-            <h1>Contacts</h1>
+            <h1>Turtle Pizza Admin</h1>
         </div>
         <nav className='navigation'>
-            <button className='AddContact'>Add New Contact</button>
+            <button className='navButton'>Dishes</button>
+            <button className='navButton'>Orders</button>
         </nav>
         </header>
         )

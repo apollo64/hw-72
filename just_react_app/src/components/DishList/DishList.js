@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-const ContactList=()=>{
+const DishList=()=>{
     return (
         <div>
-            Text
+            DishList
         </div>
     )
 }
-export default ContactList;
+export default DishList;
