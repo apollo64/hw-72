@@ -14,7 +14,6 @@ const DishList=()=>{
     const dispatch = useDispatch();
 
     const editHandler = (id)=>{
-        console.log('dish id edit', id)
         navigate('edit_dish/'+id)
     }
     const deleteHandler = (id)=>{

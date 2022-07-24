@@ -35,6 +35,13 @@ export const deleteDish =createAsyncThunk(
         return dishId
     }
 )
+export const updateDish=createAsyncThunk(
+    'dishes/editDish',
+    async (dish )=>{
+        await axiosFireBase.put('dishes/'+dish.id+'.json',{title:dish.title, price:dish.price,image:dish.image})
+        return dish
+    }
+)
 
 const reducerDishes = createSlice({
     name:'dishes',
@@ -51,6 +58,11 @@ const reducerDishes = createSlice({
         console.log('delete dish action payload', action.payload)
         let copyDishes = state.dishes.filter(dish=>dish.id !== action.payload)
         state.dishes=copyDishes
+    },
+    [updateDish.fulfilled]: (state, action)=>{
+        let oldOnes = state.dishes.filter(dish=>dish.id!==action.payload.id)
+        oldOnes.push(action.payload)
+        state.dishes=oldOnes
     }
     }
 

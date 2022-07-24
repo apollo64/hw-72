@@ -2,36 +2,39 @@ import React, {useState, useEffect} from 'react';
 import FormDish from '../FormDish/FormDish';
 import './EditDish.css';
 import {useNavigate,useParams} from 'react-router-dom';
-// import { shallowEqual, useDispatch } from 'react-redux';
+import {updateDish} from '../../store/services/DishesSlice'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 
 const EditDish=()=>{
-    const [dish, setDish]= useState({
+    const {dishes} = useSelector(state=>state.dishes, shallowEqual)
+    
+    const dishId = useParams()['id'];
+    const [dish, setDish]= useState(
+        dishes.filter(dish=>dish.id === dishId)[0] ||
+        {
         title:'', 
         price:'', 
         image:''
-})
-// const dispatch =useDispatch();
-const id = useParams()['id'];
-
+}
+)
+const dispatch =useDispatch();
     const navigate = useNavigate();
 const changeDataHanlder =(e)=>{
     const {name, value } = e.target
-    console.log('name', name , 'value', value)
     let copy = {...dish}
     copy[name]=value
     setDish(copy)
 }
 const saveHandler =(e)=>{
     e.preventDefault()
-    console.log('save')
+    dispatch(updateDish( dish))
+    navigate('/')
 }
 const cancelHandler =() =>{
-    console.log('cancel form ')
     navigate('/')
 }
 useEffect(()=>{
-    console.log('id edit', id)
 },[])
 return (
     <>
