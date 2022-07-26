@@ -18,7 +18,9 @@ const styles = StyleSheet.create({
     footer: {
         flex:1,
         display:'flex', 
-        flexDirection:'row'
+        flexDirection:'row', 
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 })
 export default Footer;

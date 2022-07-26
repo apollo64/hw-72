@@ -1,21 +1,27 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import  {View,Text, StyleSheet, FlatList} from 'react-native';
 import Item from '../ItemList/Item/Item';
-import {useSelector, useDispatch, shallowEqual} from 'react-redux';
+// import {useSelector, useDispatch, shallowEqual} from 'react-redux';
 // import {fetchRecords} from '../../store/services/recordSlice';
 // import Spinnerist from '../UI/Spinnerist/Spinnerist';
 
 const ScrollWindow =()=>{
+    const stanImage = 'https://live-production.wcms.abc-cdn.net.au/7f6f1ae13ff9c22f22479312208be855';
+    const [items, setItems] = useState ([
+        {title:'f', price:'5', Image:stanImage, id:1},
+        {title:'f', price:'5', Image:stanImage, id:2},
+        {title:'f', price:'5', Image:stanImage, id:3}
+    ])
     // const {items, loading, error} = useSelector(state=>state, shallowEqual)
-    const dispatch=useDispatch()
-    console.log('loading',loading)
-    useEffect(()=>{
+    // const dispatch=useDispatch()
+    // console.log('loading',loading)
+    // useEffect(()=>{
         // dispatch(fetchRecords())
-    },[dispatch])
+    // },[])
     let spinner = null;
-    if (loading) {
+    // if (loading) {
         // spinner = <Spinnerist/>
-    }
+    // }
     
     
     return (
@@ -30,7 +36,7 @@ const ScrollWindow =()=>{
                 itemTitle={item.title}
                 itemPrice={item.price}
                 key={item.id}
-                loading ={loading}
+                // loading ={loading}
                 />
             )}
             />

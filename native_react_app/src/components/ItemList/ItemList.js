@@ -15,7 +15,7 @@ const  ItemList=({ navigation }) =>{
     <ScrollWindow/>
 
 
-      /> 
+      
       <FooterBar/>
     </View>
     </>

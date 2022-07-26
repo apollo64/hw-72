@@ -1,6 +1,7 @@
+import React from 'react';
 import {View, Image,Text,StyleSheet} from 'react-native';
 
-const Record =({itemTitle, itemImage, itemPrice, loading})=>{
+const ItemDish =({itemTitle, itemImage, itemPrice, loading})=>{
     let item =  <View style={styles.item}>
                     <Image style={styles.itemImage} source={{uri:itemImage}}/>
 
@@ -14,7 +15,7 @@ const Record =({itemTitle, itemImage, itemPrice, loading})=>{
 
 
     return (
-       record
+       item
     )
 }
 const styles = StyleSheet.create({
@@ -41,4 +42,4 @@ const styles = StyleSheet.create({
         marginRight:5,
     }
 });
-export default Record;
+export default ItemDish;

@@ -9,7 +9,7 @@ import ItemList from './src/components/ItemList/ItemList';
 
 export default function App() {
   return (
-
+    
     <NativeBaseProvider>
     {/* <HeaderBar/>   */}
     <ItemList/>
