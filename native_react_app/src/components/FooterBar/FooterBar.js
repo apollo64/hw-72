@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
-import {View, Text,StyleSheet} from 'react-native'
+import {View, Text,StyleSheet, Button} from 'react-native'
 
 
-const Footer=()=>{
+const Footer=({isPurchasable, setCancelPurchase,checkOutHandler, totalPrice})=>{
     return (
         <>
             <View style= {styles.footer}>
-    <Text>
-                    This is Footer
+    <Text style={styles.footerHeader}>
+                    Total Price:{totalPrice}
     </Text>
+
+<Button show={isPurchasable} closed={setCancelPurchase} onPress={checkOutHandler}>Checkout</Button>
             </View>
         </>
     )
@@ -20,7 +22,14 @@ const styles = StyleSheet.create({
         display:'flex', 
         flexDirection:'row', 
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#6b03fc'
+    },
+    footerHeader:{
+        marginLeft:3,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#fff',
     }
 })
 export default Footer;

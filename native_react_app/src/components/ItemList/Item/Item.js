@@ -1,15 +1,15 @@
 import React from 'react';
 import {View, Image,Text,StyleSheet} from 'react-native';
 
-const ItemDish =({itemTitle, itemImage, itemPrice, loading})=>{
-    let item =  <View style={styles.item}>
+const ItemDish =({itemTitle, itemImage, itemPrice, addHandler,loading})=>{
+    let item =  <View onClick={addHandler} style={styles.item}>
                     <Image style={styles.itemImage} source={{uri:itemImage}}/>
 
                     <Text style={styles.itemText}>
                         {itemTitle}
                     </Text>
                     <Text style={styles.itemPrice}>
-                        {itemPrice}
+                        {itemPrice} KGS
                     </Text>
                 </View>
 

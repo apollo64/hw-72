@@ -1,42 +1,49 @@
 import React, {useEffect,useState} from 'react';
 import  {View,Text, StyleSheet, FlatList} from 'react-native';
 import Item from '../ItemList/Item/Item';
-// import {useSelector, useDispatch, shallowEqual} from 'react-redux';
-// import {fetchRecords} from '../../store/services/recordSlice';
-// import Spinnerist from '../UI/Spinnerist/Spinnerist';
+import {useSelector, useDispatch, shallowEqual} from 'react-redux';
+import {addDish} from '../../store/services/orderSlice';
+import { fetchDishes } from '../../store/services/dishesSlice';
+
+
 
 const ScrollWindow =()=>{
     const stanImage = 'https://live-production.wcms.abc-cdn.net.au/7f6f1ae13ff9c22f22479312208be855';
-    const [items, setItems] = useState ([
-        {title:'f', price:'5', Image:stanImage, id:1},
-        {title:'f', price:'5', Image:stanImage, id:2},
-        {title:'f', price:'5', Image:stanImage, id:3}
-    ])
-    // const {items, loading, error} = useSelector(state=>state, shallowEqual)
-    // const dispatch=useDispatch()
-    // console.log('loading',loading)
-    // useEffect(()=>{
-        // dispatch(fetchRecords())
-    // },[])
+
+    const {dishes, loading, error} = useSelector(state=>state.dishes, shallowEqual)
+    const {order,totalPrice, purchasable} = useSelector(state=>state.order, shallowEqual)
+    const dispatch=useDispatch()
+
+    const isPurchasable=()=>{
+        console.log('is purchase')
+    }
+
+
+    useEffect(()=>{
+        dispatch(fetchDishes())
+    },[])
     let spinner = null;
-    // if (loading) {
-        // spinner = <Spinnerist/>
-    // }
-    
+
+    const addDishHandler =(id)=>{
+        console.log('add dish')
+        dispatch(addDish(id))
+    }
+    useEffect(()=>{
+        console.log('useEffect in power')
+    },[dispatch])
     
     return (
         <View style={styles.container}>
-             {/* {spinner} */}
             <FlatList
             style={styles.scrollWindow}
-            data= {items}
+            data= {dishes}
             renderItem = {({item})=>(
                 <Item
                 itemImage = {item.image}
                 itemTitle={item.title}
                 itemPrice={item.price}
                 key={item.id}
-                // loading ={loading}
+                addHandler ={()=>{addDishHandler(item.id)}}
                 />
             )}
             />
